@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id= "@+id/username1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:layout_marginTop="30dp"
+        />
+
+    <EditText
+        android:id= "@+id/password1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/username1" />
+    <Button
+        android:id="@+id/btnsignin1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="200dp"
+        android:layout_below="@id/password1"/>
+
+    <Button
+        android:id="@+id/btnsign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="150dp"
+        android:layout_toRightOf="@id/btnsignin1"
+        android:layout_below="@id/password1"/>
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remeber me"
+        android:layout_toRightOf="@id/checkbox"
+        android:layout_below="@+id/password1"
+        android:layout_marginTop="15dp"
+        android:textSize="18dp"/>
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/bt_sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/btnsign_in"
+        android:layout_marginTop="25dp"
+        />
+</RelativeLayout>
