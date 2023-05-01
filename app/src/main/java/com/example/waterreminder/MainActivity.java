@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_alarm:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AlarmFragment()).commit();
                 break;
+            case R.id.nav_feedback:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FeedbackFragment()).commit();
+                break;
             case R.id.nav_logout:
                 Toast.makeText(getApplicationContext(), "Log out", Toast.LENGTH_SHORT).show();
                 SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -91,8 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 if(savedInstanceState == null){
     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DrinkFragment()).commit();
     navigationView.setCheckedItem(R.id.nav_drink);
-}
-
+    }
 }
 
     @Override

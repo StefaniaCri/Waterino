@@ -3,11 +3,16 @@ package com.example.waterreminder.extras;
 import android.annotation.TargetApi;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
+import com.example.waterreminder.DrinkFragment;
+import com.example.waterreminder.MainActivity;
+import com.example.waterreminder.NotificationFragment;
 import com.example.waterreminder.R;
 
 public class NotificationHelper extends ContextWrapper {
@@ -39,9 +44,14 @@ public class NotificationHelper extends ContextWrapper {
     }
 
     public NotificationCompat.Builder getChannelNotification() {
+        Intent resultIntent = new Intent(this, MainActivity.class);
+
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
                 .setContentTitle("Alarm!")
-                .setContentText("Your AlarmManager is working.")
-                .setSmallIcon(R.drawable.ic_drink);
+                .setContentText("Don't forget to add some water in log")
+                .setSmallIcon(R.drawable.ic_drink)
+                .setAutoCancel(true)
+                .setContentIntent(resultPendingIntent);
     }
 }
