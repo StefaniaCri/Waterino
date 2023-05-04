@@ -46,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
     public static final String PASSWORD = "password";
     public static final String CHECKBOX = "checkbox";
 
+    public static final String userRef = "123";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +73,11 @@ public class LoginActivity extends AppCompatActivity {
                     Boolean checkuserpass = db.checkUsernamePassword(user,pass);
                     if(checkuserpass == true)
                     {
+                        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        editor.putString(userRef, username.getText().toString());
+                        editor.apply();
                         Toast.makeText(LoginActivity.this,"Sign in successfull",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);
@@ -156,6 +163,11 @@ public class LoginActivity extends AppCompatActivity {
                                 // Check condition
                                 if (task.isSuccessful()) {
                                     // When task is successful redirect to profile activity display Toast
+                                    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                    editor.putString(userRef, firebaseAuth.getCurrentUser().getEmail());
+                                    editor.apply();
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                     displayToast("Firebase authentication successful");
                                 } else {

@@ -3,7 +3,9 @@ package com.example.waterreminder;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +21,8 @@ public class NewDrinkActivity extends AppCompatActivity {
     private EditText editTextTitle;
     private EditText editTextDescription;
     private NumberPicker numberPickerQuantity;
+    public static final String userRef = "123";
+    public  static final String SHARED_PREFS = "sharedPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +65,10 @@ setTitle("Add a drink");
             return;
         }
         CollectionReference drinkRef = FirebaseFirestore.getInstance().collection("Drinks");
-        drinkRef.add(new Drink(title,description,priority));
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String userRefrence = sharedPreferences.getString(userRef,"");
+
+        drinkRef.add(new Drink(title,description,priority, userRefrence));
         Toast.makeText(getApplicationContext(),"Note added",Toast.LENGTH_SHORT);
         finish();
     }

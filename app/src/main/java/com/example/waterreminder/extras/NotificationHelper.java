@@ -12,7 +12,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.waterreminder.DrinkFragment;
 import com.example.waterreminder.MainActivity;
-import com.example.waterreminder.NotificationFragment;
 import com.example.waterreminder.R;
 
 public class NotificationHelper extends ContextWrapper {

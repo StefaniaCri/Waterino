@@ -1,7 +1,9 @@
 package com.example.waterreminder;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 public class DrinkFragment extends Fragment {
+    public static final String userRef = "123";
+    public  static final String SHARED_PREFS = "sharedPrefs";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -42,8 +46,9 @@ public class DrinkFragment extends Fragment {
                 startActivity(new Intent(view.getContext(), NewDrinkActivity.class));
             }
         });
-
-        Query query = drink.orderBy("quantity", Query.Direction.DESCENDING);
+        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences(SHARED_PREFS,view.getContext().MODE_PRIVATE);
+        String userRefrence = sharedPreferences.getString(userRef,"");
+        Query query = drink.whereEqualTo("userRef", userRefrence).orderBy("quantity", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Drink> options = new FirestoreRecyclerOptions.Builder<Drink>().setQuery(query, Drink.class).build();
         adapter = new DrinkAdapter(options);

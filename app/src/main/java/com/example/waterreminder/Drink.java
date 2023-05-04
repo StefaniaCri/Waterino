@@ -5,14 +5,16 @@ public class Drink {
     private String description;
     private int quantity;
 
+    private String userRef;
     public Drink() {
 
     }
 
-    public Drink(String title, String description, int quantity) {
+    public Drink(String title, String description, int quantity,String userRef) {
         this.title = title;
         this.description = description;
         this.quantity = quantity;
+        this.userRef = userRef;
     }
 
     public String getTitle() {
@@ -26,4 +28,7 @@ public class Drink {
     public int getQuantity() {
         return quantity;
     }
+
+    public String  getUserRef() {return userRef;}
+
 }

@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:hint="Password"
         android:layout_marginTop="50dp"
-        android:layout_below="@id/username" />
+        android:layout_below="@id/username"
+        android:inputType="textPassword"/>
 
     <EditText
         android:id= "@+id/repassword"
@@ -29,7 +30,9 @@
         android:layout_height="wrap_content"
         android:hint="Retype Password"
         android:layout_marginTop="50dp"
-        android:layout_below="@id/password" />
+        android:layout_below="@id/password"
+        android:inputType="textPassword"
+        />
 
     <Button
         android:id="@+id/btnsignup"

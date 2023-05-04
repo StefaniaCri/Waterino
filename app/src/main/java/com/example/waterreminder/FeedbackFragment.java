@@ -2,6 +2,7 @@ package com.example.waterreminder;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,8 @@ public class FeedbackFragment extends Fragment {
     EditText nameData, emailData, feedbackData;
     Button save, details, emailbtn;
     Firebase firebase;
+    public static final String userRef = "123";
+    public  static final String SHARED_PREFS = "sharedPrefs";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,7 +38,9 @@ public class FeedbackFragment extends Fragment {
         details = view.findViewById(R.id.btn_details);
         emailbtn = view.findViewById(R.id.btn_email);
         Firebase.setAndroidContext(view.getContext());
-        String uniquesID = Settings.Secure.getString(view.getContext().getContentResolver(),Settings.Secure.ANDROID_ID);
+        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences(SHARED_PREFS, view.getContext().MODE_PRIVATE);
+        String uniquesID  = sharedPreferences.getString(userRef,"").replace(".","");
+
         firebase = new Firebase("https://waterreminder-53b2c-default-rtdb.europe-west1.firebasedatabase.app/Users" + uniquesID);
 
         save.setOnClickListener(new View.OnClickListener() {
